@@ -1,11 +1,12 @@
 import { FinancialSecurityForm } from "@/components/FinancialSecurityForm";
 import { FormWrapper } from "@/components/shared/FormWrapper";
 
-export default function FinancialSecurity() {
+export default function FinancialFreedom() {
   return (
     <FormWrapper
-      title="1: Financial Security"
-      nextLevelUrl="/financial-vitality"
+      prevLevelUrl="/financial-independence"
+      nextLevelUrl="/absolute-financial-freedom"
+      title="4: Financial Freedom"
     >
       <FinancialSecurityForm />
     </FormWrapper>

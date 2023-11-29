@@ -77,7 +77,7 @@ export const FinancialSecurityForm = () => {
   }
 
   return (
-    <div className="w-full max-w-lg">
+    <div className="w-full">
       <form className="mt-5 w-full" onSubmit={handleSubmit}>
         <TextInput
           label="Rent or mortgage payment"
@@ -131,7 +131,7 @@ export const FinancialSecurityForm = () => {
         />
         <button
           type="submit"
-          className="rounded-3xl bg-orange-500 px-5 py-2.5 text-slate-900"
+          className="rounded-3xl bg-orange-500 px-5 py-2.5 text-slate-900 hover:opacity-70"
         >
           Submit
         </button>
@@ -146,7 +146,7 @@ export const FinancialSecurityForm = () => {
 
           <Link
             href={"/financial-vitality"}
-            className="rounded-3xl bg-orange-500 px-5 py-2.5 text-slate-900"
+            className="rounded-3xl bg-orange-500 px-5 py-2.5 text-slate-900 hover:opacity-70"
           >
             Next Level
           </Link>

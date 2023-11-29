@@ -1,34 +1,35 @@
 "use client";
-import { FinancialSecurityState, FinancialSecurityAction } from "@/types";
+import { FinancialVitalityState, FinancialVitalityAction } from "@/types";
 import { TextInput } from "./TextInput";
 import { useReducer, ChangeEvent, Dispatch, FormEvent } from "react";
 import { formatCurrency } from "@/utils";
 import Link from "next/link";
+import { calculateYearly } from "@/utils";
 
-const initialState: FinancialSecurityState = {
-  rentOrMortgagePayment: 0,
-  foodHousehold: 0,
-  gasElectricWaterPhone: 0,
-  transportation: 0,
-  insurancePayments: 0,
+const initialState: FinancialVitalityState = {
+  clothingCosts: 0,
+  diningAndEntertainmentCosts: 0,
+  smallIndulgenceOrLittleLuxuryCosts: 0,
+  additionalIncomeForVitality: 0,
+  financialSecurityNumber: 0,
   total: 0,
 };
 
 const financialSecurityReducer = (
-  state: FinancialSecurityState,
-  action: FinancialSecurityAction,
+  state: FinancialVitalityState,
+  action: FinancialVitalityAction,
 ) => {
   switch (action.type) {
-    case "UPDATE_RENT":
-      return { ...state, rentOrMortgagePayment: action.payload };
-    case "UPDATE_FOOD":
-      return { ...state, foodHousehold: action.payload };
-    case "UPDATE_GAS":
-      return { ...state, gasElectricWaterPhone: action.payload };
-    case "UPDATE_TRANSPORTATION":
-      return { ...state, transportation: action.payload };
-    case "UPDATE_INSURANCE":
-      return { ...state, insurancePayments: action.payload };
+    case "UPDATE_CLOTHING":
+      return { ...state, clothingCosts: action.payload };
+    case "UPDATE_DINING_AND_ENTERTAINMENT":
+      return { ...state, diningAndEntertainmentCosts: action.payload };
+    case "UPDATE_SMALL_INDULGENCE_OR_LUXURY":
+      return { ...state, smallIndulgenceOrLittleLuxuryCosts: action.payload };
+    case "UPDATE_ADDITIONAL_MONTHLY_INCOME_FOR_VITALITY":
+      return { ...state, additionalIncomeForVitality: action.payload };
+    case "UPDATE_FINANCIAL_SECURITY_NUMBER":
+      return { ...state, financialSecurityNumber: action.payload };
     case "UPDATE_TOTAL":
       return { ...state, total: action.payload };
     default:
@@ -37,36 +38,39 @@ const financialSecurityReducer = (
 };
 
 export const FinancialVitalityForm = () => {
-  const [financialSecurity, dispatch] = useReducer(
+  const [financialVitality, dispatch] = useReducer(
     financialSecurityReducer,
     initialState,
   );
 
-  const updateRent = (value: number) =>
-    dispatch({ type: "UPDATE_RENT", payload: value });
-  const updateFood = (value: number) =>
-    dispatch({ type: "UPDATE_FOOD", payload: value });
-  const updateGas = (value: number) =>
-    dispatch({ type: "UPDATE_GAS", payload: value });
-  const updateTransportation = (value: number) =>
-    dispatch({ type: "UPDATE_TRANSPORTATION", payload: value });
-  const updateInsurance = (value: number) =>
-    dispatch({ type: "UPDATE_INSURANCE", payload: value });
+  const updateClothingCosts = (value: number) =>
+    dispatch({ type: "UPDATE_CLOTHING", payload: value });
+  const updateDiningAndEntertainment = (value: number) =>
+    dispatch({ type: "UPDATE_DINING_AND_ENTERTAINMENT", payload: value });
+  const updateSmallIndulgenceOrLittleLuxuryCosts = (value: number) =>
+    dispatch({ type: "UPDATE_SMALL_INDULGENCE_OR_LUXURY", payload: value });
+  const updateAdditionalMonthlyIncomeForVitality = (value: number) =>
+    dispatch({
+      type: "UPDATE_ADDITIONAL_MONTHLY_INCOME_FOR_VITALITY",
+      payload: value,
+    });
+  const updateFinancialSecurityNumber = (value: number) =>
+    dispatch({ type: "UPDATE_FINANCIAL_SECURITY_NUMBER", payload: value });
 
   function calculateTotal() {
     const {
-      rentOrMortgagePayment,
-      foodHousehold,
-      gasElectricWaterPhone,
-      transportation,
-      insurancePayments,
-    } = financialSecurity;
+      clothingCosts,
+      diningAndEntertainmentCosts,
+      smallIndulgenceOrLittleLuxuryCosts,
+      additionalIncomeForVitality,
+      financialSecurityNumber,
+    } = financialVitality;
     const total =
-      rentOrMortgagePayment +
-      foodHousehold +
-      gasElectricWaterPhone +
-      transportation +
-      insurancePayments;
+      clothingCosts +
+      diningAndEntertainmentCosts +
+      smallIndulgenceOrLittleLuxuryCosts +
+      additionalIncomeForVitality +
+      financialSecurityNumber;
     dispatch({ type: "UPDATE_TOTAL", payload: total });
   }
 
@@ -82,79 +86,75 @@ export const FinancialVitalityForm = () => {
           label="Half of your current monthly clothing costs"
           min={0}
           type="number"
-          value={financialSecurity.rentOrMortgagePayment}
+          value={financialVitality.clothingCosts}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             const removedLeadingZero = event.target.value.replace(/^0+/, "");
-            updateRent(Number(removedLeadingZero));
+            updateClothingCosts(Number(removedLeadingZero));
           }}
         />
         <TextInput
           label="Half of your current monthly dining and entertainment costs"
           min={0}
           type="number"
-          value={financialSecurity.foodHousehold}
+          value={financialVitality.diningAndEntertainmentCosts}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             const removedLeadingZero = event.target.value.replace(/^0+/, "");
-            updateFood(Number(removedLeadingZero));
+            updateDiningAndEntertainment(Number(removedLeadingZero));
           }}
         />
         <TextInput
           label="Half of your current small indulgence or little luxury costs"
           min={0}
           type="number"
-          value={financialSecurity.gasElectricWaterPhone}
+          value={financialVitality.smallIndulgenceOrLittleLuxuryCosts}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             const removedLeadingZero = event.target.value.replace(/^0+/, "");
-            updateGas(Number(removedLeadingZero));
+            updateSmallIndulgenceOrLittleLuxuryCosts(
+              Number(removedLeadingZero),
+            );
           }}
         />
         <TextInput
           label="Total additional monthly income for vitality"
           min={0}
           type="number"
-          value={financialSecurity.transportation}
+          value={financialVitality.additionalIncomeForVitality}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             const removedLeadingZero = event.target.value.replace(/^0+/, "");
-            updateTransportation(Number(removedLeadingZero));
+            updateAdditionalMonthlyIncomeForVitality(
+              Number(removedLeadingZero),
+            );
           }}
         />
         <TextInput
           label="Monthly Financial Security number"
           min={0}
           type="number"
-          value={financialSecurity.insurancePayments}
+          value={financialVitality.financialSecurityNumber}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             const removedLeadingZero = event.target.value.replace(/^0+/, "");
-            updateInsurance(Number(removedLeadingZero));
+            updateFinancialSecurityNumber(Number(removedLeadingZero));
           }}
         />
-        <TextInput
-          label="Total Monthly Income Necessary for Vitality"
-          min={0}
-          type="number"
-          value={financialSecurity.insurancePayments}
-          onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            const removedLeadingZero = event.target.value.replace(/^0+/, "");
-            updateInsurance(Number(removedLeadingZero));
-          }}
-        />
+
         <button
           type="submit"
-          className="rounded-3xl bg-orange-500 px-5 py-2.5 text-slate-900"
+          className="rounded-3xl bg-orange-500 px-5 py-2.5 text-slate-900 hover:opacity-70"
         >
           Submit
         </button>
       </form>
-      {financialSecurity.total > 0 ? (
-        <div className="rounded-3xl bg-green-600 p-5 text-2xl text-white">
-          {`${formatCurrency(Number(financialSecurity.total.toFixed(2)))} €`}
-        </div>
-      ) : null}
-      {financialSecurity.total > 0 ? (
-        <div className="flex w-full items-end justify-end">
+      {financialVitality.total > 0 ? (
+        <div className="my-10 flex flex-col items-center justify-center gap-5 rounded-3xl bg-green-600 p-5 text-white">
+          <p className="text-2xl">
+            {`You need ${formatCurrency(
+              calculateYearly(Number(financialVitality.total.toFixed(2))),
+            )}€ for Financial Vitality!`}
+          </p>
+
           <Link
-            href={"/financial-vitality"}
-            className="rounded-3xl bg-orange-500 px-5 py-2.5 text-slate-900"
+            href={"/financial-independence"}
+            className="rounded-3xl bg-orange-500 px-5 py-2.5 text-slate-900 hover:opacity-70"
           >
             Next Level
           </Link>
