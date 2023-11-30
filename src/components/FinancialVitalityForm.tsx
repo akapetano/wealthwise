@@ -1,96 +1,35 @@
 "use client";
-import { FinancialVitalityState, FinancialVitalityAction } from "@/types";
+
 import { TextInput } from "./TextInput";
-import { useReducer, ChangeEvent, Dispatch, FormEvent } from "react";
+import { ChangeEvent } from "react";
 import { formatCurrency } from "@/utils";
 import Link from "next/link";
 import { calculateYearly } from "@/utils";
-
-const initialState: FinancialVitalityState = {
-  clothingCosts: 0,
-  diningAndEntertainmentCosts: 0,
-  smallIndulgenceOrLittleLuxuryCosts: 0,
-  additionalIncomeForVitality: 0,
-  financialSecurityNumber: 0,
-  total: 0,
-};
-
-const financialSecurityReducer = (
-  state: FinancialVitalityState,
-  action: FinancialVitalityAction,
-) => {
-  switch (action.type) {
-    case "UPDATE_CLOTHING":
-      return { ...state, clothingCosts: action.payload };
-    case "UPDATE_DINING_AND_ENTERTAINMENT":
-      return { ...state, diningAndEntertainmentCosts: action.payload };
-    case "UPDATE_SMALL_INDULGENCE_OR_LUXURY":
-      return { ...state, smallIndulgenceOrLittleLuxuryCosts: action.payload };
-    case "UPDATE_ADDITIONAL_MONTHLY_INCOME_FOR_VITALITY":
-      return { ...state, additionalIncomeForVitality: action.payload };
-    case "UPDATE_FINANCIAL_SECURITY_NUMBER":
-      return { ...state, financialSecurityNumber: action.payload };
-    case "UPDATE_TOTAL":
-      return { ...state, total: action.payload };
-    default:
-      return state;
-  }
-};
+import { useFinancialVitality } from "@/hooks/useFinancialVitality";
+import { FINANCIAL_VITALITY } from "@/constants";
 
 export const FinancialVitalityForm = () => {
-  const [financialVitality, dispatch] = useReducer(
-    financialSecurityReducer,
-    initialState,
-  );
-
-  const updateClothingCosts = (value: number) =>
-    dispatch({ type: "UPDATE_CLOTHING", payload: value });
-  const updateDiningAndEntertainment = (value: number) =>
-    dispatch({ type: "UPDATE_DINING_AND_ENTERTAINMENT", payload: value });
-  const updateSmallIndulgenceOrLittleLuxuryCosts = (value: number) =>
-    dispatch({ type: "UPDATE_SMALL_INDULGENCE_OR_LUXURY", payload: value });
-  const updateAdditionalMonthlyIncomeForVitality = (value: number) =>
-    dispatch({
-      type: "UPDATE_ADDITIONAL_MONTHLY_INCOME_FOR_VITALITY",
-      payload: value,
-    });
-  const updateFinancialSecurityNumber = (value: number) =>
-    dispatch({ type: "UPDATE_FINANCIAL_SECURITY_NUMBER", payload: value });
-
-  function calculateTotal() {
-    const {
-      clothingCosts,
-      diningAndEntertainmentCosts,
-      smallIndulgenceOrLittleLuxuryCosts,
-      additionalIncomeForVitality,
-      financialSecurityNumber,
-    } = financialVitality;
-    const total =
-      clothingCosts +
-      diningAndEntertainmentCosts +
-      smallIndulgenceOrLittleLuxuryCosts +
-      additionalIncomeForVitality +
-      financialSecurityNumber;
-    dispatch({ type: "UPDATE_TOTAL", payload: total });
-  }
-
-  function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-    calculateTotal();
-  }
+  const {
+    financialVitality,
+    resetFiancialVitality,
+    handleChange,
+    handleSubmit,
+  } = useFinancialVitality();
 
   return (
-    <>
-      <form className="mt-5 w-full max-w-lg" onSubmit={handleSubmit}>
+    <div className="w-full">
+      <form className="mt-5 w-full" onSubmit={handleSubmit}>
         <TextInput
           label="Half of your current monthly clothing costs"
           min={0}
           type="number"
           value={financialVitality.clothingCosts}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            const removedLeadingZero = event.target.value.replace(/^0+/, "");
-            updateClothingCosts(Number(removedLeadingZero));
+            handleChange(FINANCIAL_VITALITY.clothingCosts, event);
           }}
+          wrapperClassName="flex items-center"
+          labelClassName="w-3/4"
+          inputClassName="w-1/4"
         />
         <TextInput
           label="Half of your current monthly dining and entertainment costs"
@@ -98,9 +37,11 @@ export const FinancialVitalityForm = () => {
           type="number"
           value={financialVitality.diningAndEntertainmentCosts}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            const removedLeadingZero = event.target.value.replace(/^0+/, "");
-            updateDiningAndEntertainment(Number(removedLeadingZero));
+            handleChange(FINANCIAL_VITALITY.diningAndEntertainmentCosts, event);
           }}
+          wrapperClassName="flex items-center"
+          labelClassName="w-3/4"
+          inputClassName="w-1/4"
         />
         <TextInput
           label="Half of your current small indulgence or little luxury costs"
@@ -108,11 +49,14 @@ export const FinancialVitalityForm = () => {
           type="number"
           value={financialVitality.smallIndulgenceOrLittleLuxuryCosts}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            const removedLeadingZero = event.target.value.replace(/^0+/, "");
-            updateSmallIndulgenceOrLittleLuxuryCosts(
-              Number(removedLeadingZero),
+            handleChange(
+              FINANCIAL_VITALITY.smallIndulgenceOrLittleLuxuryCosts,
+              event,
             );
           }}
+          wrapperClassName="flex items-center"
+          labelClassName="w-3/4"
+          inputClassName="w-1/4"
         />
         <TextInput
           label="Total additional monthly income for vitality"
@@ -120,11 +64,11 @@ export const FinancialVitalityForm = () => {
           type="number"
           value={financialVitality.additionalIncomeForVitality}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            const removedLeadingZero = event.target.value.replace(/^0+/, "");
-            updateAdditionalMonthlyIncomeForVitality(
-              Number(removedLeadingZero),
-            );
+            handleChange(FINANCIAL_VITALITY.additionalIncomeForVitality, event);
           }}
+          wrapperClassName="flex items-center"
+          labelClassName="w-3/4"
+          inputClassName="w-1/4"
         />
         <TextInput
           label="Monthly Financial Security number"
@@ -132,34 +76,46 @@ export const FinancialVitalityForm = () => {
           type="number"
           value={financialVitality.financialSecurityNumber}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            const removedLeadingZero = event.target.value.replace(/^0+/, "");
-            updateFinancialSecurityNumber(Number(removedLeadingZero));
+            handleChange(FINANCIAL_VITALITY.financialSecurityNumber, event);
           }}
+          wrapperClassName="flex items-center"
+          labelClassName="w-3/4"
+          inputClassName="w-1/4"
         />
-
-        <button
-          type="submit"
-          className="rounded-3xl bg-orange-500 px-5 py-2.5 text-slate-900 hover:opacity-70"
-        >
-          Submit
-        </button>
+        <div className="flex w-full items-center justify-center">
+          <button
+            type="submit"
+            className="mt-2.5 w-full rounded-3xl bg-orange-500 px-5 py-2.5 text-lg text-slate-900 hover:opacity-70 lg:w-auto"
+          >
+            Submit
+          </button>
+        </div>
       </form>
-      {financialVitality.total > 0 ? (
+      {financialVitality.totalForFinancialVitality > 0 ? (
         <div className="my-10 flex flex-col items-center justify-center gap-5 rounded-3xl bg-green-600 p-5 text-white">
           <p className="text-2xl">
             {`You need ${formatCurrency(
-              calculateYearly(Number(financialVitality.total.toFixed(2))),
+              calculateYearly(
+                Number(financialVitality.totalForFinancialVitality.toFixed(2)),
+              ),
             )}€ for Financial Vitality!`}
           </p>
-
-          <Link
-            href={"/financial-independence"}
-            className="rounded-3xl bg-orange-500 px-5 py-2.5 text-slate-900 hover:opacity-70"
-          >
-            Next Level
-          </Link>
+          <div className="flex w-full items-center justify-between">
+            <button
+              className="rounded-3xl border border-slate-900 px-5 py-2.5 text-slate-900 hover:border-orange-500 hover:bg-orange-500"
+              onClick={resetFiancialVitality}
+            >
+              Reset
+            </button>
+            <Link
+              href={"/financial-independence"}
+              className="rounded-3xl bg-orange-500 px-5 py-2.5 text-slate-900 hover:opacity-70"
+            >
+              Next Level
+            </Link>
+          </div>
         </div>
       ) : null}
-    </>
+    </div>
   );
 };

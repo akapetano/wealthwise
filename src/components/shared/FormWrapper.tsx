@@ -16,7 +16,7 @@ export const FormWrapper: FC<IFormWrapperProps> = ({
   nextLevelUrl,
 }) => {
   return (
-    <main className="just mx-auto flex min-h-screen max-w-2xl flex-col items-center px-5 py-10 lg:p-24">
+    <main className="just mx-auto flex min-h-screen max-w-3xl flex-col items-center px-5 py-10 lg:p-24">
       <div className="flex w-full items-center justify-between gap-5">
         {prevLevelUrl && (
           <Link

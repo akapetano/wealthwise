@@ -3,19 +3,24 @@ import { FC, InputHTMLAttributes } from "react";
 interface ITextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   wrapperClassName?: string;
+  labelClassName?: string;
   inputClassName?: string;
 }
 
 export const TextInput: FC<ITextInputProps> = ({
   label,
   wrapperClassName,
+  labelClassName,
   inputClassName,
   ...rest
 }) => {
   return (
     <div className={`mb-4 ${wrapperClassName}`}>
       {label && (
-        <label className="mb-1 block text-slate-400" htmlFor={rest.id}>
+        <label
+          className={`mb-1 block text-slate-400 ${labelClassName}`}
+          htmlFor={rest.id}
+        >
           {label}
         </label>
       )}
