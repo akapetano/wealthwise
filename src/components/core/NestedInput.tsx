@@ -24,7 +24,7 @@ export const NestedInput: FC<INestedInputProps> = ({
           type="text"
           value={labelValue}
           onChange={onLabelChange}
-          wrapperClassName="mb-0"
+          wrapperClassName="!mb-0"
         />
       </label>
 
