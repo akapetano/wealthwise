@@ -31,8 +31,8 @@ export const FinancialIndependenceForm = () => {
             );
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
 
         <div className="flex w-full items-center justify-center">

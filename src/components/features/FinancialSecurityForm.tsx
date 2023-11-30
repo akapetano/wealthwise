@@ -28,8 +28,8 @@ export const FinancialSecurityForm = () => {
             handleChange(FINANCIAL_SECURITY.rentOrMortgagePayment, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Food, household"
@@ -40,8 +40,8 @@ export const FinancialSecurityForm = () => {
             handleChange(FINANCIAL_SECURITY.foodHousehold, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Gas, electric, water, phone"
@@ -52,8 +52,8 @@ export const FinancialSecurityForm = () => {
             handleChange(FINANCIAL_SECURITY.gasElectricWaterPhone, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Transportation"
@@ -64,8 +64,8 @@ export const FinancialSecurityForm = () => {
             handleChange(FINANCIAL_SECURITY.transportation, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Insurance Payments"
@@ -76,8 +76,8 @@ export const FinancialSecurityForm = () => {
             handleChange(FINANCIAL_SECURITY.insurancePayments, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <div className="flex w-full items-center justify-center">
           <button

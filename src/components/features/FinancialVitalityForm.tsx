@@ -28,8 +28,8 @@ export const FinancialVitalityForm = () => {
             handleChange(FINANCIAL_VITALITY.clothingCosts, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Half of your current monthly dining and entertainment costs"
@@ -40,8 +40,8 @@ export const FinancialVitalityForm = () => {
             handleChange(FINANCIAL_VITALITY.diningAndEntertainmentCosts, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Half of your current small indulgence or little luxury costs"
@@ -55,8 +55,8 @@ export const FinancialVitalityForm = () => {
             );
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Total additional monthly income for vitality"
@@ -67,8 +67,8 @@ export const FinancialVitalityForm = () => {
             handleChange(FINANCIAL_VITALITY.additionalIncomeForVitality, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Monthly Financial Security number"
@@ -79,8 +79,8 @@ export const FinancialVitalityForm = () => {
             handleChange(FINANCIAL_VITALITY.financialSecurityNumber, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <div className="flex w-full items-center justify-center">
           <button

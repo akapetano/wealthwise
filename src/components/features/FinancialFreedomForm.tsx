@@ -24,8 +24,8 @@ export const FinancialFreedomForm = () => {
             handleChange(FINANCIAL_FREEDOM.luxuryItemNum1, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Luxury Item #2 per month"
@@ -36,8 +36,8 @@ export const FinancialFreedomForm = () => {
             handleChange(FINANCIAL_FREEDOM.luxuryItemNum2, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Donation"
@@ -48,8 +48,8 @@ export const FinancialFreedomForm = () => {
             handleChange(FINANCIAL_FREEDOM.donation, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Financial Independence Number"
@@ -60,8 +60,8 @@ export const FinancialFreedomForm = () => {
             handleChange(FINANCIAL_FREEDOM.financialIndependenceNumber, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
 
         <div className="flex w-full items-center justify-center">

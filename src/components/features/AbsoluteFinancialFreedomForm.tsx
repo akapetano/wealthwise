@@ -17,7 +17,7 @@ export const AbsoluteFinancialFreedomForm = () => {
   } = useAbsoluteFinancialFreedom();
 
   return (
-    <div className="w-full">
+    <div className="w- w-full">
       <form className="mt-5 w-full" onSubmit={handleSubmit}>
         <TextInput
           label="Luxury Item #1 per month"
@@ -27,9 +27,9 @@ export const AbsoluteFinancialFreedomForm = () => {
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             handleChange(ABSOLUTE_FINANCIAL_FREEDOM.luxuryItemNum1, event);
           }}
-          wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          wrapperClassName="w-full flex items-center gap-5"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Luxury Item #2 per month"
@@ -40,8 +40,8 @@ export const AbsoluteFinancialFreedomForm = () => {
             handleChange(ABSOLUTE_FINANCIAL_FREEDOM.luxuryItemNum2, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Luxury Item #3 per month"
@@ -52,8 +52,8 @@ export const AbsoluteFinancialFreedomForm = () => {
             handleChange(ABSOLUTE_FINANCIAL_FREEDOM.luxuryItemNum3, event);
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
         <TextInput
           label="Financial Freedom Number"
@@ -67,8 +67,8 @@ export const AbsoluteFinancialFreedomForm = () => {
             );
           }}
           wrapperClassName="flex items-center gap-5"
-          labelClassName="w-3/4"
-          inputClassName="w-1/4"
+          labelClassName="w-3/5"
+          inputClassName="w-2/5"
         />
 
         <div className="flex w-full items-center justify-center">
