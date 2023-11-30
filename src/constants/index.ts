@@ -30,15 +30,20 @@ export const FINANCIAL_INDEPENDENCE = {
 
 export const FINANCIAL_FREEDOM = {
   luxuryItemNum1: "luxuryItemNum1",
+  luxuryItemNum1Label: "luxuryItemNum1Label",
   luxuryItemNum2: "luxuryItemNum2",
+  luxuryItemNum2Label: "luxuryItemNum2Label",
   donation: "donation",
   financialIndependenceNumber: "financialIndependenceNumber",
 } as const;
 
 export const ABSOLUTE_FINANCIAL_FREEDOM = {
   luxuryItemNum1: "luxuryItemNum1",
+  luxuryItemNum1Label: "luxuryItemNum1Label",
   luxuryItemNum2: "luxuryItemNum2",
+  luxuryItemNum2Label: "luxuryItemNum2Label",
   luxuryItemNum3: "luxuryItemNum3",
+  luxuryItemNum3Label: "luxuryItemNum3Label",
   financialFreedomNumber: "financialFreedomNumber",
   totalForAbsoluteFinancialFreedom: "totalForAbsoluteFinancialFreedom",
 } as const;

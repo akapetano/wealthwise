@@ -22,7 +22,9 @@ export interface FinancialIndependenceState {
 
 export interface FinancialFreedomState {
   luxuryItemNum1: number;
+  luxuryItemNum1Label: string;
   luxuryItemNum2: number;
+  luxuryItemNum2Label: string;
   donation: number;
   financialIndependenceNumber: number;
   totalForFinancialFreedom: number;
@@ -30,8 +32,11 @@ export interface FinancialFreedomState {
 
 export interface AbsoluteFinancialFreedomState {
   luxuryItemNum1: number;
+  luxuryItemNum1Label: string;
   luxuryItemNum2: number;
+  luxuryItemNum2Label: string;
   luxuryItemNum3: number;
+  luxuryItemNum3Label: string;
   financialFreedomNumber: number;
   totalForAbsoluteFinancialFreedom: number;
 }

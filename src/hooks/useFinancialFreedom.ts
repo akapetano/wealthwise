@@ -4,6 +4,7 @@ import { useAtom } from "jotai";
 import { useResetAtom } from "jotai/utils";
 import { financialFreedomAtom } from "@/store/financial-freedom";
 import { useFinancialIndependence } from "./useFinancialIndependence";
+import { formatCurrency, calculateYearly } from "@/utils";
 
 export function useFinancialFreedom() {
   const { financialIndependence } = useFinancialIndependence();
@@ -45,10 +46,22 @@ export function useFinancialFreedom() {
           luxuryItemNum1: Number(removedLeadingZero),
         }));
         break;
+      case FINANCIAL_FREEDOM.luxuryItemNum1Label:
+        setFinancialFreedom((prev) => ({
+          ...prev,
+          luxuryItemNum1Label: event.target.value,
+        }));
+        break;
       case FINANCIAL_FREEDOM.luxuryItemNum2:
         setFinancialFreedom((prev) => ({
           ...prev,
           luxuryItemNum2: Number(removedLeadingZero),
+        }));
+        break;
+      case FINANCIAL_FREEDOM.luxuryItemNum2Label:
+        setFinancialFreedom((prev) => ({
+          ...prev,
+          luxuryItemNum2Label: event.target.value,
         }));
         break;
       case FINANCIAL_FREEDOM.donation:
@@ -89,10 +102,17 @@ export function useFinancialFreedom() {
     financialIndependenceNumberIsPresent,
   ]);
 
+  const calculationMessage = `You need ${formatCurrency(
+    calculateYearly(
+      Number(financialFreedom.totalForFinancialFreedom.toFixed(2)),
+    ),
+  )}€ per year to achieve Financial Freedom.`;
+
   return {
     financialFreedom,
     resetFiancialFreedom,
     handleSubmit,
     handleChange,
+    calculationMessage,
   };
 }

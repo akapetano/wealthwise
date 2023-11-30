@@ -3,6 +3,7 @@ import { FINANCIAL_SECURITY } from "@/constants";
 import { useAtom } from "jotai";
 import { useResetAtom } from "jotai/utils";
 import { financialSecurityAtom } from "@/store/financial-security";
+import { formatCurrency, calculateYearly } from "@/utils";
 
 export function useFinancialSecurity() {
   const [financialSecurity, setFinancialSecurity] = useAtom(
@@ -75,10 +76,17 @@ export function useFinancialSecurity() {
     }
   }
 
+  const calculationMessage = `You need ${formatCurrency(
+    calculateYearly(
+      Number(financialSecurity.totalForFinancialSecurity.toFixed(2)),
+    ),
+  )}€ per year to achieve Financial Security.`;
+
   return {
     financialSecurity,
     resetFiancialSecurity,
     handleSubmit,
     handleChange,
+    calculationMessage,
   };
 }

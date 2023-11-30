@@ -4,6 +4,7 @@ import { useAtom } from "jotai";
 import { useResetAtom } from "jotai/utils";
 import { financialVitalityAtom } from "@/store/financial-vitality";
 import { useFinancialSecurity } from "./useFinancialSecurity";
+import { formatCurrency, calculateYearly } from "@/utils";
 
 export function useFinancialVitality() {
   const { financialSecurity } = useFinancialSecurity();
@@ -101,11 +102,18 @@ export function useFinancialVitality() {
     financialSecurityNumberIsPresent,
   ]);
 
+  const calculationMessage = `You need ${formatCurrency(
+    calculateYearly(
+      Number(financialVitality.totalForFinancialVitality.toFixed(2)),
+    ),
+  )}€ per year to achieve Financial Vitality!`;
+
   return {
     financialVitality,
     financialSecurityNumberIsPresent,
     resetFiancialVitality,
     handleSubmit,
     handleChange,
+    calculationMessage,
   };
 }

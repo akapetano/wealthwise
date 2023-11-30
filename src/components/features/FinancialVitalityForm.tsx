@@ -1,10 +1,8 @@
 "use client";
 
-import { TextInput } from "../core/TextInput";
+import { Input } from "../core/Input";
 import { ChangeEvent } from "react";
-import { formatCurrency } from "@/utils";
 import Link from "next/link";
-import { calculateYearly } from "@/utils";
 import { useFinancialVitality } from "@/hooks/useFinancialVitality";
 import { FINANCIAL_VITALITY } from "@/constants";
 
@@ -14,12 +12,13 @@ export const FinancialVitalityForm = () => {
     resetFiancialVitality,
     handleChange,
     handleSubmit,
+    calculationMessage,
   } = useFinancialVitality();
 
   return (
     <div className="w-full">
       <form className="mt-5 w-full" onSubmit={handleSubmit}>
-        <TextInput
+        <Input
           label="Half of your current monthly clothing costs"
           min={0}
           type="number"
@@ -31,7 +30,7 @@ export const FinancialVitalityForm = () => {
           labelClassName="w-3/5"
           inputClassName="w-2/5"
         />
-        <TextInput
+        <Input
           label="Half of your current monthly dining and entertainment costs"
           min={0}
           type="number"
@@ -43,7 +42,7 @@ export const FinancialVitalityForm = () => {
           labelClassName="w-3/5"
           inputClassName="w-2/5"
         />
-        <TextInput
+        <Input
           label="Half of your current small indulgence or little luxury costs"
           min={0}
           type="number"
@@ -58,7 +57,7 @@ export const FinancialVitalityForm = () => {
           labelClassName="w-3/5"
           inputClassName="w-2/5"
         />
-        <TextInput
+        <Input
           label="Total additional monthly income for vitality"
           min={0}
           type="number"
@@ -70,7 +69,7 @@ export const FinancialVitalityForm = () => {
           labelClassName="w-3/5"
           inputClassName="w-2/5"
         />
-        <TextInput
+        <Input
           label="Monthly Financial Security number"
           min={0}
           type="number"
@@ -93,13 +92,7 @@ export const FinancialVitalityForm = () => {
       </form>
       {financialVitality.totalForFinancialVitality > 0 ? (
         <div className="my-10 flex flex-col items-center justify-center gap-5 rounded-3xl bg-green-600 p-5 text-white">
-          <p className="text-2xl">
-            {`You need ${formatCurrency(
-              calculateYearly(
-                Number(financialVitality.totalForFinancialVitality.toFixed(2)),
-              ),
-            )}€ per year to achieve Financial Vitality!`}
-          </p>
+          <p className="text-2xl">{calculationMessage}</p>
           <div className="flex w-full items-center justify-between">
             <button
               className="rounded-3xl border border-slate-900 px-5 py-2.5 text-slate-900 hover:border-orange-500 hover:bg-orange-500"

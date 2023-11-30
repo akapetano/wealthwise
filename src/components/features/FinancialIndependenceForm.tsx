@@ -1,10 +1,8 @@
 "use client";
 
-import { TextInput } from "../core/TextInput";
+import { Input } from "../core/Input";
 import { ChangeEvent } from "react";
-import { formatCurrency } from "@/utils";
 import Link from "next/link";
-import { calculateYearly } from "@/utils";
 import { useFinancialIndependence } from "@/hooks/useFinancialIndependence";
 import { FINANCIAL_INDEPENDENCE } from "@/constants";
 
@@ -14,12 +12,13 @@ export const FinancialIndependenceForm = () => {
     resetFinancialIndependence,
     handleChange,
     handleSubmit,
+    calculationMessage,
   } = useFinancialIndependence();
 
   return (
     <div className="w-full">
       <form className="mt-5 w-full" onSubmit={handleSubmit}>
-        <TextInput
+        <Input
           label="Financial Independence number"
           min={0}
           type="number"
@@ -46,17 +45,7 @@ export const FinancialIndependenceForm = () => {
       </form>
       {financialIndependence.totalForFinancialIndependence > 0 ? (
         <div className="my-10 flex flex-col items-center justify-center gap-5 rounded-3xl bg-green-600 p-5 text-white">
-          <p className="text-2xl">
-            {`You need ${formatCurrency(
-              calculateYearly(
-                Number(
-                  financialIndependence.totalForFinancialIndependence.toFixed(
-                    2,
-                  ),
-                ),
-              ),
-            )}€ per year to achieve Financial Independence!`}
-          </p>
+          <p className="text-2xl">{calculationMessage}</p>
           <div className="flex w-full items-center justify-between">
             <button
               className="rounded-3xl border border-slate-900 px-5 py-2.5 text-slate-900 hover:border-orange-500 hover:bg-orange-500"

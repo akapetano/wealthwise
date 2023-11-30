@@ -38,7 +38,6 @@ export const FormWrapper: FC<IFormWrapperProps> = ({
           </Link>
         )}
       </div>
-      <p className="self-start text-slate-900">Expenses in euro €</p>
       {children}
     </main>
   );

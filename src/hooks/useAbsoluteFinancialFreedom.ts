@@ -4,6 +4,7 @@ import { useAtom } from "jotai";
 import { useResetAtom } from "jotai/utils";
 import { absoluteFinancialFreedomAtom } from "@/store/absolute-financial-freedom";
 import { useFinancialFreedom } from "./useFinancialFreedom";
+import { formatCurrency, calculateYearly } from "@/utils";
 
 export function useAbsoluteFinancialFreedom() {
   const { financialFreedom } = useFinancialFreedom();
@@ -52,16 +53,34 @@ export function useAbsoluteFinancialFreedom() {
           luxuryItemNum1: Number(removedLeadingZero),
         }));
         break;
+      case ABSOLUTE_FINANCIAL_FREEDOM.luxuryItemNum1Label:
+        setAbsoluteFinancialFreedom((prev) => ({
+          ...prev,
+          luxuryItemNum1Label: event.target.value,
+        }));
+        break;
       case ABSOLUTE_FINANCIAL_FREEDOM.luxuryItemNum2:
         setAbsoluteFinancialFreedom((prev) => ({
           ...prev,
           luxuryItemNum2: Number(removedLeadingZero),
         }));
         break;
+      case ABSOLUTE_FINANCIAL_FREEDOM.luxuryItemNum2Label:
+        setAbsoluteFinancialFreedom((prev) => ({
+          ...prev,
+          luxuryItemNum2Label: event.target.value,
+        }));
+        break;
       case ABSOLUTE_FINANCIAL_FREEDOM.luxuryItemNum3:
         setAbsoluteFinancialFreedom((prev) => ({
           ...prev,
           luxuryItemNum3: Number(removedLeadingZero),
+        }));
+        break;
+      case ABSOLUTE_FINANCIAL_FREEDOM.luxuryItemNum3Label:
+        setAbsoluteFinancialFreedom((prev) => ({
+          ...prev,
+          luxuryItemNum3Label: event.target.value,
         }));
         break;
       case ABSOLUTE_FINANCIAL_FREEDOM.financialFreedomNumber:
@@ -96,10 +115,19 @@ export function useAbsoluteFinancialFreedom() {
     financialFreedomNumberIsPresent,
   ]);
 
+  const calculationMessage = `You need ${formatCurrency(
+    calculateYearly(
+      Number(
+        absoluteFinancialFreedom.totalForAbsoluteFinancialFreedom.toFixed(2),
+      ),
+    ),
+  )}€ per year to achieve financial security.`;
+
   return {
     absoluteFinancialFreedom,
     resetAbsoluteFiancialFreedom,
     handleSubmit,
     handleChange,
+    calculationMessage,
   };
 }

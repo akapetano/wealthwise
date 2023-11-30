@@ -1,13 +1,13 @@
 import { FC, InputHTMLAttributes } from "react";
 
-interface ITextInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   wrapperClassName?: string;
   labelClassName?: string;
   inputClassName?: string;
 }
 
-export const TextInput: FC<ITextInputProps> = ({
+export const Input: FC<IInputProps> = ({
   label,
   wrapperClassName,
   labelClassName,
