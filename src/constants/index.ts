@@ -23,3 +23,22 @@ export const FINANCIAL_VITALITY = {
   financialSecurityNumber: "financialSecurityNumber",
   totalForFinancialVitality: "totalForFinancialVitality",
 } as const;
+
+export const FINANCIAL_INDEPENDENCE = {
+  totalForFinancialIndependence: "totalForFinancialIndependence",
+} as const;
+
+export const FINANCIAL_FREEDOM = {
+  luxuryItemNum1: "luxuryItemNum1",
+  luxuryItemNum2: "luxuryItemNum2",
+  donation: "donation",
+  financialIndependenceNumber: "financialIndependenceNumber",
+} as const;
+
+export const ABSOLUTE_FINANCIAL_FREEDOM = {
+  luxuryItemNum1: "luxuryItemNum1",
+  luxuryItemNum2: "luxuryItemNum2",
+  luxuryItemNum3: "luxuryItemNum3",
+  financialFreedomNumber: "financialFreedomNumber",
+  totalForAbsoluteFinancialFreedom: "totalForAbsoluteFinancialFreedom",
+} as const;

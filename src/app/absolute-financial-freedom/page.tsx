@@ -1,4 +1,4 @@
-import { FinancialSecurityForm } from "@/components/FinancialSecurityForm";
+import { AbsoluteFinancialFreedomForm } from "@/components/features/AbsoluteFinancialFreedomForm";
 import { FormWrapper } from "@/components/shared/FormWrapper";
 
 export default function AbsoluteFinancialFreedom() {
@@ -7,7 +7,7 @@ export default function AbsoluteFinancialFreedom() {
       prevLevelUrl="/financial-freedom"
       title="5: Absolute Financial Freedom"
     >
-      <FinancialSecurityForm />
+      <AbsoluteFinancialFreedomForm />
     </FormWrapper>
   );
 }

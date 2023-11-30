@@ -1,4 +1,4 @@
-import { FinancialVitalityForm } from "@/components/FinancialVitalityForm";
+import { FinancialVitalityForm } from "@/components/features/FinancialVitalityForm";
 import { FormWrapper } from "@/components/shared/FormWrapper";
 
 export default function FinancialVitality() {

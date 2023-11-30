@@ -1,4 +1,4 @@
-import { FinancialSecurityForm } from "@/components/FinancialSecurityForm";
+import { FinancialSecurityForm } from "@/components/features/FinancialSecurityForm";
 import { FormWrapper } from "@/components/shared/FormWrapper";
 
 export default function FinancialSecurity() {

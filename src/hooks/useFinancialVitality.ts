@@ -85,8 +85,8 @@ export function useFinancialVitality() {
     if (financialSecurityNumberIsPresent) {
       setFinancialVitality((prev) => ({
         ...prev,
-        financialSecurityNumber: +(
-          Number(financialSecurity.totalForFinancialSecurity) / 12
+        financialSecurityNumber: +Number(
+          financialSecurity.totalForFinancialSecurity,
         ).toFixed(2),
       }));
     } else {
