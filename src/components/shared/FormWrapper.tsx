@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight } from "react-feather";
 interface IFormWrapperProps {
   children: ReactNode;
   title: string;
+  description?: string;
   prevLevelUrl?: string;
   nextLevelUrl?: string;
 }
@@ -12,11 +13,12 @@ interface IFormWrapperProps {
 export const FormWrapper: FC<IFormWrapperProps> = ({
   children,
   title,
+  description,
   prevLevelUrl,
   nextLevelUrl,
 }) => {
   return (
-    <main className="just mx-auto flex min-h-screen max-w-3xl flex-col items-center px-5 py-10 lg:p-24">
+    <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center px-5 py-10 lg:p-24">
       <div className="flex w-full items-center justify-between gap-5">
         {prevLevelUrl && (
           <Link
@@ -38,6 +40,7 @@ export const FormWrapper: FC<IFormWrapperProps> = ({
           </Link>
         )}
       </div>
+      <p className="my-5 text-left text-lg text-slate-200">{description}</p>
       {children}
     </main>
   );
